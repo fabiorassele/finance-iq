@@ -10,11 +10,18 @@ import {
   TRANSACTION_PAYMENT_METHOD_LABELS,
 } from "@/app/_constants/transactions";
 import EditTransactionButton from "../_components/edit-transaction-button";
+import TransactionCategoryIcon from "../_components/category-icon";
 
 export const transactionColumns: ColumnDef<Transaction>[] = [
   {
     accessorKey: "name",
     header: "Nome",
+    cell: ({ row: { original: transaction } }) => (
+      <div className="flex items-center space-x-2">
+        <TransactionCategoryIcon category={transaction.category} />
+        <div>{transaction.name}</div>
+      </div>
+    ),
   },
   {
     accessorKey: "type",
