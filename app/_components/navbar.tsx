@@ -42,9 +42,7 @@ const Navbar = () => {
           Assinatura
         </Link>
       </div>
-      <div className="rounded-lg border border-solid px-4 py-2">
-        <UserButton showName />
-      </div>
+      <UserButton showName />
     </nav>
   );
 };
