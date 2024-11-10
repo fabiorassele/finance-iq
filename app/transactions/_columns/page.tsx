@@ -1,14 +1,15 @@
 "use client";
 
-import { Badge } from "@/app/_components/ui/badge";
+import { Transaction } from "@prisma/client";
+import { ColumnDef } from "@tanstack/react-table";
+import TransactionTypeBadge from "../_components/type-badge";
 import { Button } from "@/app/_components/ui/button";
+import { TrashIcon } from "lucide-react";
 import {
   TRANSACTION_CATEGORY_LABELS,
   TRANSACTION_PAYMENT_METHOD_LABELS,
 } from "@/app/_constants/transactions";
-import { Transaction, TransactionType } from "@prisma/client";
-import { ColumnDef } from "@tanstack/react-table";
-import { CircleIcon, PencilIcon, TrashIcon } from "lucide-react";
+import EditTransactionButton from "../_components/edit-transaction-button";
 
 export const transactionColumns: ColumnDef<Transaction>[] = [
   {
@@ -18,32 +19,10 @@ export const transactionColumns: ColumnDef<Transaction>[] = [
   {
     accessorKey: "type",
     header: "Tipo",
-    cell: ({ row: { original: transaction } }) => {
-      if (transaction.type === TransactionType.DEPOSIT) {
-        return (
-          <Badge className="bg-muted font-bold text-primary hover:bg-muted">
-            <CircleIcon size={10} className="mr-2 fill-primary" />
-            Depósito
-          </Badge>
-        );
-      }
-      if (transaction.type === TransactionType.EXPENSE) {
-        return (
-          <Badge className="bg-danger bg-opacity-10 font-bold text-danger hover:bg-danger hover:bg-opacity-10">
-            <CircleIcon size={10} className="mr-2 fill-danger" />
-            Despesa
-          </Badge>
-        );
-      }
-      return (
-        <Badge className="bg-muted font-bold text-white hover:bg-muted">
-          <CircleIcon size={10} className="mr-2 fill-white" />
-          Investimento
-        </Badge>
-      );
-    },
+    cell: ({ row: { original: transaction } }) => (
+      <TransactionTypeBadge transaction={transaction} />
+    ),
   },
-
   {
     accessorKey: "category",
     header: "Categoria",
@@ -78,14 +57,12 @@ export const transactionColumns: ColumnDef<Transaction>[] = [
   {
     accessorKey: "actions",
     header: "Ações",
-    cell: () => {
+    cell: ({ row: { original: transaction } }) => {
       return (
         <div className="space-x-1">
+          <EditTransactionButton transaction={transaction} />
           <Button variant="ghost" size="icon" className="text-muted-foreground">
-            <PencilIcon size={16} />
-          </Button>
-          <Button variant="ghost" size="icon" className="text-muted-foreground">
-            <TrashIcon size={16} />
+            <TrashIcon />
           </Button>
         </div>
       );

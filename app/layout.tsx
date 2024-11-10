@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Mulish } from "next/font/google";
 import "./globals.css";
-import { ClerkProvider } from "@clerk/nextjs";
+import { ClerkLoaded, ClerkLoading, ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
+import Image from "next/image";
 
 const mulish = Mulish({
   subsets: ["latin-ext"],
@@ -18,12 +19,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${mulish.className} dark antialiased`}>
-        <ClerkProvider appearance={{ baseTheme: dark }}>
-          {children}
-        </ClerkProvider>
-      </body>
-    </html>
+    <ClerkProvider appearance={{ baseTheme: dark }}>
+      <html lang="en">
+        <body className={`${mulish.className} dark antialiased`}>
+          <ClerkLoading>
+            <div className="flex h-screen items-center justify-center">
+              <Image src="/logo.svg" alt="Logo" width={250} height={250} />
+            </div>
+          </ClerkLoading>
+          <ClerkLoaded>{children}</ClerkLoaded>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
