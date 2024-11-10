@@ -29,7 +29,7 @@ export const transactionColumns: ColumnDef<Transaction>[] = [
       }
       if (transaction.type === TransactionType.EXPENSE) {
         return (
-          <Badge className="bg-danger bg-opacity-10 font-bold text-danger">
+          <Badge className="bg-danger bg-opacity-10 font-bold text-danger hover:bg-danger hover:bg-opacity-10">
             <CircleIcon size={10} className="mr-2 fill-danger" />
             Despesa
           </Badge>
