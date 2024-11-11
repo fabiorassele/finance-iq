@@ -27,7 +27,11 @@ export default function RootLayout({
               <Image src="/logo.svg" alt="Logo" width={250} height={250} />
             </div>
           </ClerkLoading>
-          <ClerkLoaded>{children}</ClerkLoaded>
+          <ClerkLoaded>
+            <div className="flex h-full flex-col overflow-hidden">
+              {children}
+            </div>
+          </ClerkLoaded>
         </body>
       </html>
     </ClerkProvider>

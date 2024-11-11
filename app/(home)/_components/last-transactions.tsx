@@ -3,7 +3,7 @@ import { CardContent, CardHeader, CardTitle } from "@/app/_components/ui/card";
 import { ScrollArea } from "@/app/_components/ui/scroll-area";
 import { TRANSACTION_PAYMENT_METHOD_ICONS } from "@/app/_constants/transactions";
 import { formatCurrency } from "@/app/_utils/currency";
-import { Transaction } from "@prisma/client";
+import { Transaction, TransactionType } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -13,19 +13,19 @@ interface LastTransactionsProps {
 
 const LastTransactions = ({ lastTransactions }: LastTransactionsProps) => {
   const getAmountColor = (transaction: Transaction) => {
-    if (transaction.type === "EXPENSE") {
+    if (transaction.type === TransactionType.EXPENSE) {
       return "text-danger";
     }
-    if (transaction.type === "DEPOSIT") {
+    if (transaction.type === TransactionType.DEPOSIT) {
       return "text-primary";
     }
     return "text-white";
   };
   const getAmountPrefix = (transaction: Transaction) => {
-    if (transaction.type === "EXPENSE") {
-      return "-";
+    if (transaction.type === TransactionType.DEPOSIT) {
+      return "+";
     }
-    return "+";
+    return "-";
   };
   return (
     <ScrollArea className="rounded-md border">
@@ -42,14 +42,12 @@ const LastTransactions = ({ lastTransactions }: LastTransactionsProps) => {
             className="flex items-center justify-between"
           >
             <div className="flex items-center gap-3">
-              <div className="rounded-lg bg-white bg-opacity-[3%] p-3">
+              <div className="rounded-lg bg-white bg-opacity-[3%] p-3 text-white">
                 <Image
-                  src={
-                    TRANSACTION_PAYMENT_METHOD_ICONS[transaction.paymentMethod]
-                  }
-                  width={20}
+                  src={`/${TRANSACTION_PAYMENT_METHOD_ICONS[transaction.paymentMethod]}`}
                   height={20}
-                  alt="Payment Methods Icons"
+                  width={20}
+                  alt="PIX"
                 />
               </div>
               <div>
@@ -64,7 +62,8 @@ const LastTransactions = ({ lastTransactions }: LastTransactionsProps) => {
               </div>
             </div>
             <p className={`text-sm font-bold ${getAmountColor(transaction)}`}>
-              {`${getAmountPrefix(transaction)}${formatCurrency(Number(transaction.amount))}`}
+              {getAmountPrefix(transaction)}
+              {formatCurrency(Number(transaction.amount))}
             </p>
           </div>
         ))}

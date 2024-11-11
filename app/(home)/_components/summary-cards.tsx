@@ -17,12 +17,13 @@ interface SummaryCards {
 const SummaryCards = async ({
   balance,
   depositsTotal,
-  investmentsTotal,
   expensesTotal,
+  investmentsTotal,
 }: SummaryCards) => {
   return (
     <div className="space-y-6">
-      {/* {Primeiro Card} */}
+      {/* PRIMEIRO CARD */}
+
       <SummaryCard
         icon={<WalletIcon size={16} />}
         title="Saldo"

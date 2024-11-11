@@ -2,7 +2,7 @@ import { db } from "@/app/_lib/prisma";
 import { TransactionType } from "@prisma/client";
 import { TotalExpensePerCategory, TransactionPercentagePerType } from "./types";
 
-export const gestDashboard = async (month: string) => {
+export const getDashboard = async (month: string) => {
   const where = {
     date: {
       gte: new Date(`2024-${month}-01`),
@@ -95,7 +95,7 @@ export const gestDashboard = async (month: string) => {
     orderBy: {
       date: "desc",
     },
-    take: 10,
+    take: 15,
   });
   return {
     balance,

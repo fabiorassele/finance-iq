@@ -1,6 +1,7 @@
 "use client";
 
 import { Pie, PieChart } from "recharts";
+
 import { Card, CardContent } from "@/app/_components/ui/card";
 import {
   ChartConfig,
@@ -16,15 +17,15 @@ import PercentageItem from "./percentage-item";
 const chartConfig = {
   [TransactionType.INVESTMENT]: {
     label: "Investido",
-    color: "#fff",
+    color: "#FFFFFF",
   },
   [TransactionType.DEPOSIT]: {
     label: "Receita",
-    color: "#55b02e",
+    color: "#55B02E",
   },
   [TransactionType.EXPENSE]: {
     label: "Despesas",
-    color: "#e93030",
+    color: "#E93030",
   },
 } satisfies ChartConfig;
 
@@ -35,7 +36,7 @@ interface TransactionsPieChartProps {
   expensesTotal: number;
 }
 
-export const TransactionsPieChart = ({
+const TransactionsPieChart = ({
   depositsTotal,
   investmentsTotal,
   expensesTotal,
@@ -45,22 +46,21 @@ export const TransactionsPieChart = ({
     {
       type: TransactionType.DEPOSIT,
       amount: depositsTotal,
-      fill: "#55b02e",
-    },
-    {
-      type: TransactionType.INVESTMENT,
-      amount: investmentsTotal,
-      fill: "#fff",
+      fill: "#55B02E",
     },
     {
       type: TransactionType.EXPENSE,
       amount: expensesTotal,
-      fill: "#e93030",
+      fill: "#E93030",
+    },
+    {
+      type: TransactionType.INVESTMENT,
+      amount: investmentsTotal,
+      fill: "#FFFFFF",
     },
   ];
-
   return (
-    <Card className="flex flex-col p-12">
+    <Card className="flex flex-col p-6">
       <CardContent className="flex-1 pb-0">
         <ChartContainer
           config={chartConfig}
@@ -79,21 +79,22 @@ export const TransactionsPieChart = ({
             />
           </PieChart>
         </ChartContainer>
+
         <div className="space-y-3">
           <PercentageItem
             icon={<TrendingUpIcon size={16} className="text-primary" />}
-            value={typesPercentage[TransactionType.DEPOSIT]}
             title="Receita"
-          />
-          <PercentageItem
-            icon={<PiggyBankIcon size={16} />}
-            value={typesPercentage[TransactionType.INVESTMENT]}
-            title="Investimento"
+            value={typesPercentage[TransactionType.DEPOSIT]}
           />
           <PercentageItem
             icon={<TrendingDownIcon size={16} className="text-danger" />}
-            value={typesPercentage[TransactionType.EXPENSE]}
             title="Despesas"
+            value={typesPercentage[TransactionType.EXPENSE]}
+          />
+          <PercentageItem
+            icon={<PiggyBankIcon size={16} />}
+            title="Investido"
+            value={typesPercentage[TransactionType.INVESTMENT]}
           />
         </div>
       </CardContent>

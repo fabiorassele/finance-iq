@@ -16,6 +16,7 @@ const ExpensesPerCategory = ({
       <CardHeader>
         <CardTitle className="font-bold">Gastos por Categoria</CardTitle>
       </CardHeader>
+
       <CardContent className="space-y-6">
         {expensesPerCategory.map((category) => (
           <div key={category.category} className="space-y-2">
@@ -25,11 +26,7 @@ const ExpensesPerCategory = ({
               </p>
               <p className="text-sm font-bold">{category.percentageOfTotal}%</p>
             </div>
-            <Progress
-              value={category.percentageOfTotal}
-              color="bg-red-500"
-              className="h-2"
-            />
+            <Progress value={category.percentageOfTotal} />
           </div>
         ))}
       </CardContent>
