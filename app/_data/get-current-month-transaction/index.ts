@@ -7,7 +7,6 @@ export const getCurrentMonthTransactions = async () => {
   if (!userId) {
     throw new Error("Unauthorized");
   }
-
   return db.transaction.count({
     where: {
       userId,
