@@ -19,8 +19,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider appearance={{ baseTheme: dark }}>
-      <html lang="en">
+    <ClerkProvider
+      appearance={{
+        baseTheme: dark,
+      }}
+    >
+      <html lang="pt-BR">
         <body className={`${mulish.className} dark antialiased`}>
           <ClerkLoading>
             <div className="flex h-screen items-center justify-center">
