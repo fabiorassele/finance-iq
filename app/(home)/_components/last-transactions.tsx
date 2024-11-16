@@ -47,12 +47,14 @@ const LastTransactions = ({ lastTransactions }: LastTransactionsProps) => {
                   src={`/${TRANSACTION_PAYMENT_METHOD_ICONS[transaction.paymentMethod]}`}
                   height={20}
                   width={20}
-                  alt="PIX"
+                  alt="Icones de métodos de pagamento"
                 />
               </div>
               <div>
-                <p className="text-sm font-bold">{transaction.name}</p>
-                <p className="text-sm text-muted-foreground">
+                <p className="max-w-14 truncate text-xs font-bold md:max-w-28 md:text-sm">
+                  {transaction.name}
+                </p>
+                <p className="text-xs text-muted-foreground md:text-sm">
                   {new Date(transaction.date).toLocaleDateString("pt-BR", {
                     day: "2-digit",
                     month: "short",
@@ -61,7 +63,9 @@ const LastTransactions = ({ lastTransactions }: LastTransactionsProps) => {
                 </p>
               </div>
             </div>
-            <p className={`text-sm font-bold ${getAmountColor(transaction)}`}>
+            <p
+              className={`text-xs font-bold md:text-sm ${getAmountColor(transaction)}`}
+            >
               {getAmountPrefix(transaction)}
               {formatCurrency(Number(transaction.amount))}
             </p>

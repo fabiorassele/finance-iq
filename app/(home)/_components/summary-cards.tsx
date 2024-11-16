@@ -23,9 +23,7 @@ const SummaryCards = async ({
   userCanAddTransaction,
 }: SummaryCards) => {
   return (
-    <div className="space-y-6">
-      {/* PRIMEIRO CARD */}
-
+    <div className="space-y-2">
       <SummaryCard
         icon={<WalletIcon size={16} />}
         title="Saldo"
@@ -35,7 +33,7 @@ const SummaryCards = async ({
       />
 
       {/* OUTROS CARDS */}
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 gap-2 lg:grid-cols-3 lg:gap-6">
         <SummaryCard
           icon={<PiggyBankIcon size={16} />}
           title="Investido"
@@ -46,6 +44,15 @@ const SummaryCards = async ({
           title="Receita"
           amount={depositsTotal}
         />
+        <div className="hidden lg:block">
+          <SummaryCard
+            icon={<TrendingDownIcon size={16} className="text-danger" />}
+            title="Despesas"
+            amount={expensesTotal}
+          />
+        </div>
+      </div>
+      <div className="col-span-2 lg:hidden">
         <SummaryCard
           icon={<TrendingDownIcon size={16} className="text-danger" />}
           title="Despesas"

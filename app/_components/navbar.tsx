@@ -39,12 +39,12 @@ const Navbar = () => {
     ));
 
   return (
-    <nav className="flex items-center justify-between border-b border-solid px-4 py-4 md:px-8">
+    <div className="flex items-center justify-between border-b border-solid px-4 py-4 lg:px-8">
       {/* Mobile: Menu Hambúrguer */}
       <button
         onClick={toggleMenu}
         type="button"
-        className="text-muted-foreground focus:outline-none md:hidden"
+        className="text-muted-foreground focus:outline-none lg:hidden"
         aria-label="Toggle menu"
         aria-expanded={isOpen}
         aria-controls="mobile-menu"
@@ -57,9 +57,9 @@ const Navbar = () => {
       </button>
 
       {/* Logo: Centralizada no Mobile, à Esquerda no Desktop */}
-      <div className="absolute left-1/2 flex -translate-x-1/2 items-center justify-center gap-12 md:static md:translate-x-0">
+      <div className="absolute left-1/2 flex -translate-x-1/2 items-center justify-center gap-12 lg:static lg:translate-x-0">
         <Image src="/logo.svg" alt="logo" width={173} height={39} />
-        <div className="hidden items-center gap-12 md:flex">
+        <div className="hidden items-center gap-12 lg:flex">
           {renderLinks()}
         </div>
       </div>
@@ -78,7 +78,7 @@ const Navbar = () => {
           {renderLinks(true)}
         </div>
       )}
-    </nav>
+    </div>
   );
 };
 

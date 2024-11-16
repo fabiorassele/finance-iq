@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowDownUpIcon } from "lucide-react";
+import { PlusIcon } from "lucide-react";
 import { Button } from "./ui/button";
 import { useState } from "react";
 import UpsertTransactionDialog from "./upsert-transaction-dialog";
@@ -26,8 +26,8 @@ const AddTransactionButton = ({
               onClick={() => setDialogIsOpen(true)}
               disabled={!userCanAddTransaction}
             >
-              Adicionar transação
-              <ArrowDownUpIcon />
+              <span className="hidden sm:block">Adicionar transação</span>
+              <PlusIcon />
             </Button>
           </TooltipTrigger>
           <TooltipContent>
