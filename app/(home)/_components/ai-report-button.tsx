@@ -17,6 +17,7 @@ import { useState } from "react";
 import { ScrollArea } from "@/app/_components/ui/scroll-area";
 import Markdown from "react-markdown";
 import Link from "next/link";
+import { toast } from "sonner";
 
 interface AiReportButtonProps {
   hasPremiumPlan: boolean;
@@ -32,8 +33,10 @@ const AiReportButton = ({ month, hasPremiumPlan }: AiReportButtonProps) => {
       const aiReport = await generateAiReport({ month });
       console.log({ aiReport });
       setReport(aiReport);
+      toast.success("Relatório gerado com sucesso!");
     } catch (error) {
       console.error(error);
+      toast.error("Erro ao gerar relatório. Tente novamente mais tarde.");
     } finally {
       setReportIsLoading(false);
     }
