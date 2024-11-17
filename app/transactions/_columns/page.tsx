@@ -3,23 +3,22 @@
 import { Transaction } from "@prisma/client";
 import { ColumnDef } from "@tanstack/react-table";
 import TransactionTypeBadge from "../_components/type-badge";
-import { Button } from "@/app/_components/ui/button";
-import { TrashIcon } from "lucide-react";
 import {
   TRANSACTION_CATEGORY_LABELS,
   TRANSACTION_PAYMENT_METHOD_LABELS,
 } from "@/app/_constants/transactions";
-import EditTransactionButton from "../_components/edit-transaction-button";
 import TransactionCategoryIcon from "../_components/category-icon";
+import EditTransactionButton from "../_components/edit-transaction-button";
+import DeleteTransactionbutton from "../_components/delete-transaction-button";
 
-export const transactionColumns: ColumnDef<Transaction>[] = [
+const TransactionColumns: ColumnDef<Transaction>[] = [
   {
     accessorKey: "name",
     header: "Nome",
     cell: ({ row: { original: transaction } }) => (
-      <div className="flex items-center space-x-2">
+      <div className="flex items-center space-x-3">
         <TransactionCategoryIcon category={transaction.category} />
-        <div>{transaction.name}</div>
+        <span className="whitespace-nowrap">{transaction.name}</span>
       </div>
     ),
   },
@@ -31,28 +30,6 @@ export const transactionColumns: ColumnDef<Transaction>[] = [
     ),
   },
   {
-    accessorKey: "category",
-    header: "Categoria",
-    cell: ({ row: { original: transaction } }) =>
-      TRANSACTION_CATEGORY_LABELS[transaction.category],
-  },
-  {
-    accessorKey: "paymentMethod",
-    header: "Método de Pagamento",
-    cell: ({ row: { original: transaction } }) =>
-      TRANSACTION_PAYMENT_METHOD_LABELS[transaction.paymentMethod],
-  },
-  {
-    accessorKey: "date",
-    header: "Data",
-    cell: ({ row: { original: transaction } }) =>
-      new Date(transaction.date).toLocaleDateString("pt-BR", {
-        day: "2-digit",
-        month: "long",
-        year: "numeric",
-      }),
-  },
-  {
     accessorKey: "amount",
     header: "Valor",
     cell: ({ row: { original: transaction } }) =>
@@ -62,17 +39,43 @@ export const transactionColumns: ColumnDef<Transaction>[] = [
       }).format(Number(transaction.amount)),
   },
   {
+    accessorKey: "category",
+    header: "Categoria",
+    cell: ({ row: { original: transaction } }) =>
+      TRANSACTION_CATEGORY_LABELS[transaction.category],
+  },
+  {
+    accessorKey: "paymentMethod",
+    header: "Método de pagamento",
+    cell: ({ row: { original: transaction } }) => (
+      <span className="whitespace-nowrap">
+        {TRANSACTION_PAYMENT_METHOD_LABELS[transaction.paymentMethod]}
+      </span>
+    ),
+  },
+  {
+    accessorKey: "date",
+    header: "Data",
+    cell: ({ row: { original: transaction } }) => (
+      <span className="whitespace-nowrap">
+        {new Date(transaction.date).toLocaleDateString("pt-BR", {
+          day: "2-digit",
+          month: "long",
+          year: "numeric",
+        })}
+      </span>
+    ),
+  },
+  {
     accessorKey: "actions",
-    header: "Ações",
-    cell: ({ row: { original: transaction } }) => {
-      return (
-        <div className="space-x-1">
-          <EditTransactionButton transaction={transaction} />
-          <Button variant="ghost" size="icon" className="text-muted-foreground">
-            <TrashIcon />
-          </Button>
-        </div>
-      );
-    },
+    header: "",
+    cell: ({ row: { original: transaction } }) => (
+      <div className="flex flex-nowrap space-x-1 text-nowrap">
+        <EditTransactionButton transaction={transaction} />
+        <DeleteTransactionbutton transactionId={transaction.id} />
+      </div>
+    ),
   },
 ];
+
+export default TransactionColumns;
