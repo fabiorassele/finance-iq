@@ -8,17 +8,17 @@ export const createStripeCheckout = async () => {
   if (!userId) {
     throw new Error("Unauthorized");
   }
-  if (!process.env.STRIPE_SECRET_KEY_TEST) {
+  if (!process.env.STRIPE_SECRET_KEY) {
     throw new Error("Stripe secret key not found");
   }
-  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY_TEST, {
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
     apiVersion: "2024-10-28.acacia",
   });
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
     mode: "subscription",
-    success_url: "http://localhost:3000",
-    cancel_url: "http://localhost:3000",
+    success_url: process.env.APP_URL,
+    cancel_url: process.env.APP_URL,
     subscription_data: {
       metadata: {
         clerk_user_id: userId,
@@ -26,7 +26,7 @@ export const createStripeCheckout = async () => {
     },
     line_items: [
       {
-        price: process.env.STRIPE_PREMIUM_PLAN_PRICE_ID_TEST,
+        price: process.env.STRIPE_PREMIUM_PLAN_PRICE_ID,
         quantity: 1,
       },
     ],
