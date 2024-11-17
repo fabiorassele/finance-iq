@@ -19,6 +19,8 @@ import TransactionCategoryIcon from "./category-icon";
 import UpsertTransactionDialog from "@/app/_components/upsert-transaction-dialog";
 import { useState } from "react";
 import { FilterIcon } from "lucide-react";
+import { toast } from "sonner";
+import { deleteTransaction } from "../_actions/delete-transaction"; // Importando a função de delete
 
 interface MobileTransactionsProps {
   MobileTransactions: Transaction[];
@@ -89,6 +91,16 @@ const MobileTransactions = ({
     const dateB = new Date(b.split(" ").reverse().join(" "));
     return dateB.getTime() - dateA.getTime();
   });
+
+  const handleDeleteTransaction = async (transactionId: string) => {
+    try {
+      await deleteTransaction({ transactionId });
+      toast.success("Transação deletada com sucesso!");
+    } catch (error) {
+      console.error(error);
+      toast.error("Ocorreu um erro ao deletar a transação.");
+    }
+  };
 
   return (
     <ScrollArea className="rounded-md border">
@@ -206,11 +218,12 @@ const MobileTransactions = ({
                         >
                           Editar
                         </Button>
-                        {/* Botão de exclusão */}
                         <Button
                           variant="destructive"
                           size="sm"
-                          onClick={() => console.log("Delete transaction")}
+                          onClick={() =>
+                            handleDeleteTransaction(transaction.id)
+                          }
                         >
                           Excluir
                         </Button>
