@@ -7,11 +7,11 @@ import {
   TRANSACTION_CATEGORY_LABELS,
   TRANSACTION_PAYMENT_METHOD_LABELS,
 } from "@/app/_constants/transactions";
+import DeleteTransactionbutton from "../_components/delete-transaction-button";
 import TransactionCategoryIcon from "../_components/category-icon";
 import EditTransactionButton from "../_components/edit-transaction-button";
-import DeleteTransactionbutton from "../_components/delete-transaction-button";
 
-const TransactionColumns: ColumnDef<Transaction>[] = [
+export const TransactionColumns: ColumnDef<Transaction>[] = [
   {
     accessorKey: "name",
     header: "Nome",
@@ -77,5 +77,3 @@ const TransactionColumns: ColumnDef<Transaction>[] = [
     ),
   },
 ];
-
-export default TransactionColumns;

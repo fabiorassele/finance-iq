@@ -11,34 +11,20 @@ const mulish = Mulish({
 });
 
 export const metadata: Metadata = {
-  title: "FinanceIQ",
-  description: "Gerencie suas finanças com facilidade usando FinanceIQ",
+  title: "Fintrack.AI",
+  description: "Gerencie suas finanças com facilidade usando Fintrack.AI",
   robots: "index, follow",
   openGraph: {
-    title: "FinanceIQ - Gerencie suas finanças",
+    title: "Fintrack.AI - Gerencie suas finanças",
     description: "Plataforma para gerenciamento de finanças pessoais.",
-    url: "https://www.financeiq.com",
-    siteName: "FinanceIQ",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "FinanceIQ - Gerencie suas finanças",
-      },
-    ],
+    url: "https://www.Fintrack.AI.com",
+    siteName: "Fintrack.AI",
     type: "website",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "FinanceIQ - Gerencie suas finanças",
-    description: "A solução completa para o gerenciamento financeiro.",
-  },
   icons: {
-    icon: "/favicon.ico",
-    apple: "/apple-icon.png",
+    icon: "/favicon.svg",
+    apple: "/favicon.svg",
   },
-  viewport: "width=device-width, initial-scale=1",
 };
 
 export default function RootLayout({
@@ -51,8 +37,21 @@ export default function RootLayout({
       <html lang="pt-BR">
         <body className={`${mulish.className} dark antialiased`}>
           <ClerkLoading>
-            <div className="flex h-screen items-center justify-center">
-              <Image src="/logo.svg" alt="Logo" width={250} height={250} />
+            <div className="flex h-screen items-center justify-center gap-4">
+              <Image
+                src="/logo-branco.svg"
+                alt="Logo Fintrack.AI"
+                width={30}
+                height={30}
+                className="animate-pulse"
+              />
+              <Image
+                src="/logotipo-branco.svg"
+                alt="Logo Fintrack.AI"
+                width={250}
+                height={250}
+                className="animate-pulse"
+              />
             </div>
           </ClerkLoading>
 

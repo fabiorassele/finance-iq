@@ -39,7 +39,7 @@ const Navbar = () => {
     ));
 
   return (
-    <div className="flex items-center justify-between border-b border-solid px-4 py-4 lg:px-8">
+    <div className="flex items-center justify-between border-b border-solid px-8 py-4 lg:px-4 lg:pr-8">
       {/* Mobile: Menu Hambúrguer */}
       <button
         onClick={toggleMenu}
@@ -58,7 +58,12 @@ const Navbar = () => {
 
       {/* Logo: Centralizada no Mobile, à Esquerda no Desktop */}
       <div className="absolute left-1/2 flex -translate-x-1/2 items-center justify-center gap-12 lg:static lg:translate-x-0">
-        <Image src="/logo.svg" alt="logo" width={173} height={39} />
+        <Image
+          src="/logotipo-branco-185x47.svg"
+          alt="Logo Fintrack.AI"
+          width={173}
+          height={39}
+        />
         <div className="hidden items-center gap-12 lg:flex">
           {renderLinks()}
         </div>

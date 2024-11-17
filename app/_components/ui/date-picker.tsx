@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import * as React from "react";
@@ -8,13 +9,14 @@ import { cn } from "@/app/_lib/utils";
 import { Button } from "./button";
 import { Calendar } from "./calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "./popover";
+import { SelectSingleEventHandler } from "react-day-picker";
 
 interface DatePickerProps {
   value?: Date;
   onChange?: SelectSingleEventHandler;
 }
 
-export const DatePicker = ({ value, onChange }) => {
+export const DatePicker = ({ value, onChange }: DatePickerProps) => {
   return (
     <Popover>
       <PopoverTrigger asChild>
