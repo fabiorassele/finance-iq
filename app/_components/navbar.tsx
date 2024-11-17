@@ -70,8 +70,11 @@ const Navbar = () => {
       </div>
 
       {/* UserButton */}
-      <div className="flex items-center">
+      <div className="flex items-center md:hidden">
         <UserButton />
+      </div>
+      <div className="hidden items-center md:flex">
+        <UserButton showName />
       </div>
 
       {/* Mobile Menu Dropdown */}
