@@ -59,7 +59,7 @@ const Navbar = () => {
       {/* Logo: Centralizada no Mobile, à Esquerda no Desktop */}
       <div className="absolute left-1/2 flex -translate-x-1/2 items-center justify-center gap-12 lg:static lg:translate-x-0">
         <Image
-          src="/logotipo-branco-185x47.svg"
+          src="/logotipo-branco-185X47.svg"
           alt="Logo Fintrack.AI"
           width={173}
           height={39}
