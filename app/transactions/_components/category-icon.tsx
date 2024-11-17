@@ -39,7 +39,7 @@ const TransactionCategoryIcon: React.FC<TransactionCategoryIconProps> = ({
   const { icon: Icon, color } = CategoryIconStyles[category];
   return (
     <div
-      className={`flex min-h-10 min-w-10 items-center justify-center rounded-full ${color}`}
+      className={`flex h-6 w-6 items-center justify-center rounded-full md:min-h-10 md:min-w-10 ${color}`}
     >
       <Icon size={20} />
     </div>
