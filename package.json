@@ -1,5 +1,5 @@
 {
-  "name": "Fintrack.AI",
+  "name": "fintrackai",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prepare": "husky"
+    "prepare": "husky && prisma generate"
   },
   "dependencies": {
     "@clerk/nextjs": "^5.7.5",
