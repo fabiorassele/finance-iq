@@ -13,7 +13,6 @@ const LoginPage = async () => {
 
   return (
     <div className="relative grid h-full grid-cols-1 overflow-hidden">
-      {/* Background com Gradiente e Elementos Gráficos */}
       <div className="absolute inset-0 z-0 bg-gradient-to-t from-[#0f0f0f] via-transparent to-[#222] opacity-90"></div>
 
       <div className="relative z-10 w-full md:order-1 md:mx-auto md:flex md:max-w-[550px] md:items-center md:justify-center md:p-8">
@@ -28,16 +27,15 @@ const LoginPage = async () => {
           <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
         </div>
         <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-black/50 text-center text-white md:relative md:bg-transparent lg:flex">
-          {/* Logotipo com animação */}
           <Image
             src="/logotipo-branco.svg"
             alt="Fintrack.AI"
             width={300}
             height={200}
-            className="mb-4 transform animate-pulse transition-all duration-500 ease-in-out hover:scale-105"
+            className="mb-4 transform animate-pulse transition-all ease-in-out hover:scale-105"
           />
 
-          <h1 className="text-shadow-md mb-4 text-4xl font-extrabold md:text-2xl">
+          <h1 className="text-shadow-md mb-4 text-2xl font-extrabold">
             Bem Vindo
           </h1>
 
