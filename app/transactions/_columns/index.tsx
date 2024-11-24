@@ -10,11 +10,23 @@ import {
 import DeleteTransactionbutton from "../_components/delete-transaction-button";
 import TransactionCategoryIcon from "../_components/category-icon";
 import EditTransactionButton from "../_components/edit-transaction-button";
+import { Button } from "@/app/_components/ui/button";
+import { ArrowUpDown } from "lucide-react";
 
 export const TransactionColumns: ColumnDef<Transaction>[] = [
   {
     accessorKey: "name",
-    header: "Nome",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Nome
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
     cell: ({ row: { original: transaction } }) => (
       <div className="flex items-center space-x-3">
         <TransactionCategoryIcon category={transaction.category} />
@@ -24,14 +36,34 @@ export const TransactionColumns: ColumnDef<Transaction>[] = [
   },
   {
     accessorKey: "type",
-    header: "Tipo",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Tipo
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
     cell: ({ row: { original: transaction } }) => (
       <TransactionTypeBadge transaction={transaction} />
     ),
   },
   {
     accessorKey: "amount",
-    header: "Valor",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Valor
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
     cell: ({ row: { original: transaction } }) =>
       new Intl.NumberFormat("pt-BR", {
         style: "currency",
@@ -40,13 +72,33 @@ export const TransactionColumns: ColumnDef<Transaction>[] = [
   },
   {
     accessorKey: "category",
-    header: "Categoria",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Categoria
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
     cell: ({ row: { original: transaction } }) =>
       TRANSACTION_CATEGORY_LABELS[transaction.category],
   },
   {
     accessorKey: "paymentMethod",
-    header: "Método de pagamento",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Metódo de Pagamento
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
     cell: ({ row: { original: transaction } }) => (
       <span className="whitespace-nowrap">
         {TRANSACTION_PAYMENT_METHOD_LABELS[transaction.paymentMethod]}
@@ -55,7 +107,17 @@ export const TransactionColumns: ColumnDef<Transaction>[] = [
   },
   {
     accessorKey: "date",
-    header: "Data",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Data
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
     cell: ({ row: { original: transaction } }) => (
       <span className="whitespace-nowrap">
         {new Date(transaction.date).toLocaleDateString("pt-BR", {
